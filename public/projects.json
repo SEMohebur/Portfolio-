@@ -1,0 +1,61 @@
+[
+  {
+    "id": "1",
+    "title": "Game Zone",
+    "image": "/gameZone.png",
+    "stack": ["React", "Tailwind CSS", "firebase", "Vite"],
+    "clientRepo": "https://github.com/SEMohebur/Game-Zone-game-library",
+    "liveLink": " https://roaring-cactus-fc10fd.netlify.app/",
+    "description": "Game Zone is an interactive game library website where users can browse, download, and view detailed information about various popular games. It is fully secured with Firebase Authentication to ensure the safety of users' personal information and access.",
+    "challenges": "Implementing secure Firebase Authentication for multiple user roles",
+    "improvements": "real-time multiplayer functionality for games."
+  },
+  {
+    "id": "2",
+    "title": "MERN Ecommerce",
+    "image": "/nextjs.png",
+    "stack": [
+      "MongoDB",
+      "Express.js",
+      "React.js",
+      "Node.js",
+      "Tailwind CSS",
+      "Firebase"
+    ],
+    "clientRepo": "https://github.com/SEMohebur/nextJs-first-project",
+    "liveLink": "https://next-js-first-project-kappa.vercel.app",
+    "description": "This is a fully functional Next.js web application where users can perform Create, Read, Update, and Delete (CRUD) operations on data. The project leverages modern Next.js features including Firebase Authentication, API Routes, Server Components, and Client Components.The frontend is built with reusable components, dynamic routing, and seamless API integration to provide a smooth and interactive user experience. This project demonstrates the ability to build scalable and secure full-stack applications using the latest Next.js capabilities.",
+    "challenges": "Integrating real-time updates for order status and product inventory.",
+    "improvements": "Add payment gateway integration (Stripe/PayPal)"
+  },
+  {
+    "id": "3",
+    "title": "Eco Bill – Utility Bill Management System",
+    "image": "/EcoBill.png",
+    "stack": [
+      "React.js",
+      "React Router (Data Mode)",
+      "Tailwind CSS",
+      "DaisyUI",
+      "Firebase Authentication",
+      "SweetAlert2",
+      "Framer Motion",
+      "jsPDF",
+      "jsPDF-AutoTable",
+      "React Icons",
+      "Dark/Light Theme",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "JWT",
+      "Dotenv",
+      "CORS"
+    ],
+    "clientRepo": "https://github.com/SEMohebur/Eco-Bill-clientSide",
+    "liveLink": "https://stunning-beijinho-9afe4e.netlify.app",
+    "description": "This is a full-featured MERN Stack web application designed with a modern, responsive user interface. The frontend is built using React.js, Tailwind CSS, and DaisyUI, ensuring a clean and mobile-friendly experience. Firebase Authentication provides secure Login/Registration and Google Login support. The app includes smooth animations using Framer Motion, interactive alerts with SweetAlert2, and jsPDF integration for generating downloadable PDF reports. On the backend, the project uses Node.js, Express.js, MongoDB, and Mongoose to create a secure and scalable RESTful API. JWT, CORS, and Dotenv are implemented to ensure secure access control and protected routes. Overall, this project combines modern UI, reliable authentication, and full CRUD functionality to deliver a complete end-to-end user experience.",
+    "challenges": "Firebase Auth setup, complex state management, responsive UI handling, dynamic PDF report generation, and creating secure validated APIs were the primary challenges.",
+    "improvements": "Payment Gateway Integration"
+  }
+]
