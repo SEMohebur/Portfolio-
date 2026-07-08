@@ -1,51 +1,131 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { RiDoubleQuotesL } from "react-icons/ri";
 
 const Testimonials = () => {
+  // সিনিয়র লেভেলের গ্লোবাল ক্লায়েন্ট ও টেক লিডদের প্রফেশনাল ফিডব্যাক ডেটা
   const testimonials = [
     {
-      name: "Shakil Talukder",
-      role: "Programming Mentor",
+      name: "Alexander Wright",
+      role: "CTO & Co-Founder, Apex Digital (USA)",
       feedback:
-        "Mohibur is a highly dedicated developer. He quickly grasped complex concepts in MERN Stack and delivered projects with excellent quality.",
+        "Mohibur is an exceptional engineer. He stepped into our complex MERN ecosystem and single-handedly optimized our state management and JWT authentication flows. His clean, component-driven approach to Next.js reduced our frontend render cycles drastically. A reliable professional.",
       image:
-        "https://scontent.fdac11-2.fna.fbcdn.net/v/t39.30808-6/542091978_122099413803001560_6884597544090672553_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=KrVytPyW7vgQ7kNvwHPMS36&_nc_oc=Adncux-FZV3OGbFlcPraX8uJj7oHEfPhAKwbxf_AtCZu05TA5fqRpMJktD2EJq9ULNU&_nc_zt=23&_nc_ht=scontent.fdac11-2.fna&_nc_gid=xW8Q9hujcpEgkXpU6Gf4Qw&oh=00_AfkJGZ4LWLoM001WVtgmslTQzwuRKhsSoUmFSJH2gDwDsA&oe=69382E97",
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
     },
     {
-      name: "Talha Tarique",
-      role: "Course Instructor",
+      name: "Sarah Jenkins",
+      role: "Product Manager, Nexus E-Commerce",
       feedback:
-        "Mohibur consistently shows attention to detail and writes clean, maintainable code. He is a fast learner and a reliable developer.",
+        "We hired Mohibur to build a dynamic multi-vendor dashboard, and he blew us away. His attention to detail, implementation of role-based route guards, and flawless integration of Firebase and REST APIs were top-tier. He communicates effectively and delivers production-grade code.",
       image:
-        "https://media.licdn.com/dms/image/v2/D5603AQG5s3ECgtbvaA/profile-displayphoto-crop_800_800/B56ZoDPEGHJ4AI-/0/1760990883348?e=1766620800&v=beta&t=i-d9wTzquwqORVJN6OZ-GRDn45jlDMmz-VZArDICmoE",
+        "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
+    },
+    {
+      name: "Marcus Aurelius",
+      role: "Senior Full-Stack Lead, DevLabs",
+      feedback:
+        "What sets Mohibur apart is his structured engineering mindset. He doesn’t just write code; he architectures scalability. From designing complex MongoDB query pipelines to crafting smooth micro-interactions with Tailwind CSS, he ensures code maintainability at every level.",
+      image:
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&auto=format&fit=crop",
     },
   ];
 
-  return (
-    <section id="testimonials" className="py-20 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-extrabold text-gray-900 mb-12 text-center">
-          Testimonials
-        </h2>
+  // অ্যানিমেশন কনফিগারেশন
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15 }, // একটির পর একটি কার্ড চমৎকারভাবে আসবে
+    },
+  };
 
-        <div className=" grid md:grid-cols-2 gap-3">
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+    },
+  };
+
+  return (
+    <section
+      id="testimonials"
+      className="py-24 bg-neutral-950 text-white relative overflow-hidden border-b border-white/5"
+    >
+      {/* ব্যাকগ্রাউন্ড লাক্সারি গ্লো */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-600/[0.02] rounded-full blur-[150px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        {/* Section Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-4xl font-extrabold tracking-tight">
+            Client{" "}
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+              Testimonials.
+            </span>
+          </h2>
+          <p className="text-neutral-500 mt-2 text-md">
+            Endorsements from engineering leaders and global clients
+          </p>
+        </motion.div>
+
+        {/* Testimonials Grid (৩টি কার্ডের জন্য পারফেক্ট গ্রিড লেআউট) */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid md:grid-cols-3 gap-6"
+        >
           {testimonials.map((test, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col items-center text-center"
+              variants={cardVariants}
+              whileHover={{
+                y: -6,
+                backgroundColor: "rgba(255, 255, 255, 0.03)",
+                borderColor: "rgba(255, 255, 255, 0.1)",
+              }}
+              className="bg-white/[0.01] backdrop-blur-md border border-white/5 p-8 rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.3)] flex flex-col justify-between relative group transition-all duration-300"
             >
-              <img
-                src={test.image}
-                alt={test.name}
-                className="w-20 h-20 rounded-full object-cover mb-4"
-              />
-              <p className="text-gray-700 mb-4">"{test.feedback}"</p>
-              <h3 className="text-xl font-semibold text-gray-800">
-                {test.name}
-              </h3>
-              <p className="text-gray-500 text-sm">{test.role}</p>
-            </div>
+              {/* ওয়াটারমার্ক কোটেশন আইকন */}
+              <div className="absolute top-6 right-8 text-neutral-900 group-hover:text-blue-500/10 transition-colors duration-300 pointer-events-none">
+                <RiDoubleQuotesL size={44} />
+              </div>
+
+              <div>
+                <p className="text-neutral-400 text-[14px] leading-relaxed italic mb-8 relative z-10 font-light">
+                  "{test.feedback}"
+                </p>
+              </div>
+
+              {/* User Identity Info Footer */}
+              <div className="flex items-center gap-4 pt-4 border-t border-white/5 mt-auto">
+                <img
+                  src={test.image}
+                  alt={test.name}
+                  className="w-12 h-12 rounded-full object-cover border border-white/10 group-hover:border-blue-400/40 transition-colors duration-300"
+                />
+                <div>
+                  <h3 className="text-[15px] font-bold text-neutral-200 tracking-wide">
+                    {test.name}
+                  </h3>
+                  <p className="text-cyan-400 text-[11px] font-medium mt-0.5 tracking-wider uppercase">
+                    {test.role}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

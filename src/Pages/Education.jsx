@@ -1,61 +1,122 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { FaGraduationCap, FaCertificate } from "react-icons/fa";
 
 const Education = () => {
+  // আপনার রেজুমে এবং রিয়েল ডেটা অনুযায়ী ১০০% ফিক্সড লিস্ট
   const educationList = [
     {
-      degree: "B.A. in Arts",
-      college: "Salimuddin Chowdhury College",
-      year: "2025",
-      major: "Mohibur Rahman",
-      icon: "https://plus.unsplash.com/premium_photo-1669652639337-c513cc42ead6?q=80&w=687&auto=format&fit=crop",
+      degree: "Bachelor of Arts (B.A.)",
+      institution: "Salimuddin Chowdhury University College",
+      duration: "2021 – 2025",
+      details:
+        "Graduated with a focus on humanities and academic core curriculum.",
+      icon: <FaGraduationCap size={22} className="text-blue-400" />,
     },
     {
-      degree: "MERN Stack Course",
-      college: "Programming Hero",
-      year: "2025",
-      major: "Full Stack Web Development",
-      icon: "https://web.programming-hero.com/home/_next/image?url=%2Fhome%2Fhome2%2Fbanner-thumbnail.jpg&w=3840&q=75",
+      degree: "Complete Web Development Course",
+      institution: "Programming Hero",
+      duration: "Issued Dec 2025",
+      details:
+        "Intensive training on MERN Stack (MongoDB, Express.js, React, Node.js), JavaScript (ES6+), and modern frontend workflows.",
+      icon: <FaCertificate size={20} className="text-cyan-400" />,
     },
   ];
 
-  return (
-    <section id="education" className="py-6 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl font-extrabold text-gray-900 mb-16 text-center">
-          Education
-        </h2>
+  // স্ক্রোল অ্যানিমেশনের জন্য ভ্যারিয়েন্ট
+  const cardVariants = (index) => ({
+    hidden: { opacity: 0, x: index % 2 === 0 ? -50 : 50 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+    },
+  });
 
+  return (
+    <section
+      id="education"
+      className="py-24 bg-neutral-950 text-white relative overflow-hidden border-b border-white/5"
+    >
+      {/* ব্যাকগ্রাউন্ড গ্লাস গ্লো */}
+      <div className="absolute top-1/2 left-0 w-80 h-80 bg-purple-600/[0.02] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-blue-600/[0.02] rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        {/* Section Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-20"
+        >
+          <h2 className="text-4xl font-extrabold tracking-tight">
+            Education &{" "}
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Timeline.
+            </span>
+          </h2>
+          <p className="text-neutral-500 mt-2 text-md">
+            My academic background and professional certifications
+          </p>
+        </motion.div>
+
+        {/* Timeline Container */}
         <div className="relative">
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-300 h-full hidden md:block"></div>
+          {/* Central Line with Glass Glow */}
+          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 h-full w-[2px] bg-gradient-to-b from-blue-500/50 via-purple-500/30 to-transparent"></div>
 
           <div className="space-y-12">
             {educationList.map((edu, index) => {
-              const isLeft = index % 2 === 0;
+              const isEven = index % 2 === 0;
               return (
                 <div
                   key={index}
-                  className={`flex flex-col md:flex-row items-center justify-between ${
-                    isLeft ? "md:flex-row" : "md:flex-row-reverse"
+                  className={`flex flex-col md:flex-row items-start md:items-center justify-between relative pl-10 md:pl-0 ${
+                    isEven ? "md:flex-row" : "md:flex-row-reverse"
                   }`}
                 >
-                  <div className="bg-white p-8 rounded-xl shadow-lg w-full md:w-5/12 hover:shadow-2xl transition-shadow duration-300 relative z-10">
-                    <h3 className="text-2xl font-semibold text-gray-800">
-                      {edu.degree}
-                    </h3>
-                    <p className="text-gray-600 mt-2">{edu.college}</p>
-                    <p className="text-gray-500 mt-1">{edu.major}</p>
-                    <p className="text-gray-400 mt-2 text-sm">
-                      Graduation Year: {edu.year}
-                    </p>
-                  </div>
+                  {/* Timeline Center Node (গ্লোয়িং ডট) */}
+                  <div className="absolute left-3.5 md:left-1/2 transform -translate-x-1/2 w-3.5 h-3.5 rounded-full bg-neutral-950 border-2 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)] z-20"></div>
 
-                  <div className=" w-36 h-36 md:w-32 md:h-32 mt-6 md:mt-0 md:mx-8 ">
-                    <img
-                      src={edu.icon}
-                      alt="Education Icon"
-                      className="w-full h-full object-cover rounded-full shadow-md"
-                    />
-                  </div>
+                  {/* Glassmorphic Data Card */}
+                  <motion.div
+                    variants={cardVariants(index)}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    whileHover={{
+                      y: -4,
+                      backgroundColor: "rgba(255, 255, 255, 0.03)",
+                    }}
+                    className="bg-white/[0.01] backdrop-blur-md border border-white/5 p-8 rounded-2xl shadow-[0_4px_30px_rgba(0,0,0,0.3)] w-full md:w-[45%] relative z-10 group transition-all duration-300"
+                  >
+                    {/* Header with Icon */}
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="p-3 rounded-xl bg-white/5 border border-white/10 shadow-inner group-hover:border-blue-500/30 transition-colors">
+                        {edu.icon}
+                      </div>
+                      <div>
+                        <span className="text-xs font-semibold text-blue-400 tracking-wider uppercase block mb-1">
+                          {edu.duration}
+                        </span>
+                        <h3 className="text-xl font-bold text-neutral-100 leading-snug">
+                          {edu.degree}
+                        </h3>
+                      </div>
+                    </div>
+
+                    <p className="text-neutral-300 font-medium text-[15px]">
+                      {edu.institution}
+                    </p>
+                    <p className="text-neutral-500 mt-3 text-sm leading-relaxed">
+                      {edu.details}
+                    </p>
+                  </motion.div>
+
+                  {/* Empty Spacer to maintain balance in Desktop Grid */}
+                  <div className="hidden md:block w-[45%]"></div>
                 </div>
               );
             })}
